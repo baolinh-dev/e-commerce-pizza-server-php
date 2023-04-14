@@ -10,9 +10,10 @@ $sodienthoai = $_POST['sodienthoai'];
 $ngaydathang = $_POST['ngaydathang'];
 $tongtien = $_POST['tongtien'];
 $ghichu = $_POST['ghichu'];
+$fullname = $_POST['fullname'];
 
 // Thực hiện câu lệnh SQL để sửa thông tin đơn hàng
-$sql = "UPDATE donhang SET tenkhachhang='$tenkhachhang', email='$email', sodienthoai='$sodienthoai', ngaydathang='$ngaydathang', tongtien='$tongtien', ghichu='$ghichu' WHERE id='$id'";
+$sql = "UPDATE donhang SET tenkhachhang='$tenkhachhang', fullname='$fullname', email='$email', sodienthoai='$sodienthoai', ngaydathang='$ngaydathang', tongtien='$tongtien', ghichu='$ghichu' WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
 
 // Kiểm tra kết quả và trả về mảng chứa message
