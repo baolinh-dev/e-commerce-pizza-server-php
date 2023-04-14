@@ -7,11 +7,11 @@ if (!$conn) {
 
 // Lấy dữ liệu từ biểu mẫu POST
 $tenkhachhang = $_POST["tenkhachhang"];
-$email = $_POST["email"];
+$email = $_POST["email"]; 
+$ngaydathang = $_POST["ngaydathang"];
 $sodienthoai = $_POST["sodienthoai"];
 $tongtien = $_POST["tongtien"]; 
 $ghichu = $_POST["ghichu"]; 
-$ngaydathang = $_POST["ngaydathang"];
 $fullname = $_POST["fullname"];
 
 // Kiểm tra xem tên khách hàng đã tồn tại trong bảng hay chưa
