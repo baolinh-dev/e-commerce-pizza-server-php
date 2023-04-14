@@ -11,16 +11,26 @@ $password = $_POST['password'];
 $email = $_POST['email'];
 $phone = $_POST['phone']; 
 $fullname = $_POST["fullname"];
+$role = $_POST["role"]; // lấy giá trị của trường "role" từ phía client
 
 // Hash mật khẩu với mã SHA-256
 $hashed_password = hash('sha256', $password);
 
-$sql = "UPDATE user SET username='$username', password='$hashed_password', email='$email', phone='$phone', fullname='$fullname' WHERE id='$id'";
+$sql = "UPDATE user SET username='$username', password='$hashed_password', email='$email', phone='$phone', fullname='$fullname', role='$role' WHERE id='$id'";
 
 if (mysqli_query($conn, $sql)) {
+    $new_user = [
+        'id' => $id,
+        'username' => $username,
+        'fullname' => $fullname,
+        'email' => $email,
+        'phone' => $phone,
+        'role' => $role
+    ];
     $arr = [ 
         'success' => true, 
-        'message' => "Sửa thông tin người dùng thành công"
+        'message' => "Sửa thông tin người dùng thành công",
+        'result' => $new_user
     ];
 } else {
     $arr = [ 

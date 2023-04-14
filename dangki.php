@@ -10,6 +10,7 @@ $password = $_POST["password"];
 $email = $_POST["email"];
 $phone = $_POST["phone"]; 
 $fullname = $_POST["fullname"];
+$role = $_POST["role"]; // lấy giá trị của trường "role" từ phía client
 
 // Hash mật khẩu với mã SHA-256
 $hashed_password = hash('sha256', $password);
@@ -22,7 +23,7 @@ if (mysqli_num_rows($result) > 0) {
     exit();
 } 
 
-$sql = "INSERT INTO user (username, password, fullname, email, phone) VALUES ('$username', '$hashed_password', '$fullname', '$email', '$phone')";
+$sql = "INSERT INTO user (username, password, fullname, email, phone, role) VALUES ('$username', '$hashed_password', '$fullname', '$email', '$phone', '$role')";
 
 if (mysqli_query($conn, $sql)) {
     $new_id = mysqli_insert_id($conn);
@@ -31,7 +32,8 @@ if (mysqli_query($conn, $sql)) {
         'username' => $username,
         'fullname' => $fullname,
         'email' => $email,
-        'phone' => $phone
+        'phone' => $phone,
+        'role' => $role
     ];
     $arr = [ 
         'success' => true, 

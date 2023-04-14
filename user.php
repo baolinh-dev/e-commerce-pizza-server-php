@@ -6,17 +6,27 @@
     
     $searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
     
-    $query = "SELECT * FROM `user` WHERE `username` LIKE '%$searchKeyword%' LIMIT $itemsPerPage OFFSET $offset";
-	$data = mysqli_query($conn, $query);
-	if (!$data) {
-		die(mysqli_error($conn));
-	}
-	$result = array();
-	while ($row = mysqli_fetch_assoc($data)) {  
-		$result[] = $row;
-	}
+    $roleFilter = isset($_GET['role']) ? $_GET['role'] : '';
+    
+    $query = "SELECT * FROM `user` WHERE `username` LIKE '%$searchKeyword%'";
+    if ($roleFilter !== 'all') {
+        $query .= " AND `role` = '$roleFilter'";
+    }
+    $query .= " LIMIT $itemsPerPage OFFSET $offset";
+    
+    $data = mysqli_query($conn, $query);
+    if (!$data) {
+        die(mysqli_error($conn));
+    }
+    $result = array();
+    while ($row = mysqli_fetch_assoc($data)) {  
+        $result[] = $row;
+    }
     
     $totalItemsQuery = "SELECT COUNT(*) AS total_items FROM `user` WHERE `username` LIKE '%$searchKeyword%'";
+    if ($roleFilter !== 'all') {
+        $totalItemsQuery .= " AND `role` = '$roleFilter'";
+    }
     $totalItemsResult = mysqli_query($conn, $totalItemsQuery);
     $totalItemsRow = mysqli_fetch_assoc($totalItemsResult);
     $totalItems = $totalItemsRow['total_items'];
