@@ -34,16 +34,6 @@ if(isset($_POST["submit"])) {
         exit();
     }
 }
-// Kiểm tra kích thước của file ảnh
-if ($_FILES["avatar"]["size"] > 500000) {
-    $uploadOk = 0;
-    $arr = [ 
-        'success' => false, 
-        'message' => "Kích thước ảnh đại diện phải nhỏ hơn 500KB"
-    ];
-    print_r(json_encode($arr));
-    exit();
-}
 // Cho phép tải lên các định dạng ảnh sau: JPG, JPEG, PNG, GIF
 if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif" ) {
     $uploadOk = 0;
