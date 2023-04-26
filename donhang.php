@@ -1,7 +1,7 @@
 <?php
     include "connect.php";
     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-    $itemsPerPage = 15;
+    $itemsPerPage = 10;
     $offset = ($currentPage - 1) * $itemsPerPage;
     
     $searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
