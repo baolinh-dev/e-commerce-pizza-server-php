@@ -19,10 +19,14 @@ $role = $_POST["role"]; // lấy giá trị của trường "role" từ phía cl
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        echo "Tên đăng nhập đã được sử dụng, vui lòng chọn tên đăng nhập khác";
+        $arr = [
+            'success' => false,
+            'message' => "Tên đăng nhập đã được sử dụng, vui lòng chọn tên đăng nhập khác"
+        ];
+        echo json_encode($arr, JSON_UNESCAPED_UNICODE);
         exit();
-    } 
-
+    }
+    
     $sql = "INSERT INTO user (username, password, fullname, email, phone, role) VALUES ('$username', '$hashed_password', '$fullname', '$email', '$phone', '$role')";
 
     if (mysqli_query($conn, $sql)) {
